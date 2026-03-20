@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        <title>Horse Racing Tracker</title>
+        <style>body { font-family: sans-serif; padding: 20px; }</style>
+    </head>
+    <body>
+        <h1>Oaklawn & Fair Grounds Tracker</h1>
+        <div id="content">Loading latest race data...</div>
+        <script>
+            fetch('data.json').then(r => r.json()).then(data => {
+                let html = '<ul>';
+                data.forEach(item => {
+                    html += `<li><strong>${item.track}</strong>: ${item.status} (${item.date || ''})</li>`;
+                });
+                html += '</ul>';
+                document.getElementById('content').innerHTML = html;
+            });
+        </script>
+    </body>
+    </html>
+    
